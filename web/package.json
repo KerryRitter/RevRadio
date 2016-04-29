@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@angular/router": "^0.2.0",
+    "angular": "1.5.3",
+    "bootstrap-less": "^3.3.8",
+    "bootstrap-sass": "^3.3.6",
+    "jquery": "^2.2.3",
+    "lodash": "^4.8.2",
+    "systemjs": "^0.19.25",
+    "typings": "^0.7.12"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-add-src": "^0.2.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-concat-css": "^2.2.0",
+    "gulp-insert": "^0.5.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-minify": "0.0.5",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-start": "^1.0.1",
+    "gulp-typescript": "^2.12.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-watch": "^4.3.5"
+  }
+}
