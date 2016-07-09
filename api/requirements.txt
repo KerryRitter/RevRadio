@@ -1,4 +1,0 @@
-Django==1.9.2
-djangorestframework==3.3.2
-psycopg2==2.6.1
-virtualenv==14.0.6
