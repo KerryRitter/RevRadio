@@ -24,6 +24,8 @@ namespace RevRadio.Data.Entities
         [Required]
         public string State { get; set; }
 
+        public string Biography { get; set; }
+
         public string ImageFileUrl { get; set; }
 
         public List<ArtistProfileApplicationUserEntity> Owners { get; set; }
