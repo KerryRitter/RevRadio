@@ -3,7 +3,7 @@
 namespace RevRadio.Data.Entities
 {
     [Table("ArtistProfile_Track")]
-    public class ArtistProfileTrackEntity
+    internal class ArtistProfileTrackEntity
     {
         public int ArtistProfileId { get; set; }
 

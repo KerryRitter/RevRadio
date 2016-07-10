@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace RevRadio.Data.Entities
 {
     [Table("Track")]
-    public class TrackEntity
+    internal class TrackEntity
     {
         [Key]
         public int Id { get; set; }

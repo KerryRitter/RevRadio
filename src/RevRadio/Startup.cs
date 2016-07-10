@@ -18,6 +18,7 @@ namespace RevRadio
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile("dbsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("oauthsettings.json", optional: true, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
@@ -66,6 +67,18 @@ namespace RevRadio
             app.UseStaticFiles();
 
             app.UseIdentity();
+
+            app.UseFacebookAuthentication(new FacebookOptions
+            {
+                AppId = Configuration["Facebook:AppID"],
+                AppSecret = Configuration["Facebook:AppSecret"]
+            });
+
+            app.UseGoogleAuthentication(new GoogleOptions
+            {
+                ClientId = Configuration["Google:ClientID"],
+                ClientSecret = Configuration["Google:ClientSecret"],
+            });
 
             app.UseMvc(routes =>
             {

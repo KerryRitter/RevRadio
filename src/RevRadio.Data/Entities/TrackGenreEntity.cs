@@ -3,7 +3,7 @@
 namespace RevRadio.Data.Entities
 {
     [Table("Track_Genre")]
-    public class TrackGenreEntity
+    internal class TrackGenreEntity
     {
         public int TrackId { get; set; }
 

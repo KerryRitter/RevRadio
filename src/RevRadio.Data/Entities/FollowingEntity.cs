@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace RevRadio.Data.Entities
 {
     [Table("Following")]
-    public class FollowingEntity
+    internal class FollowingEntity
     {
         public int ArtistProfileId { get; set; }
 
@@ -16,6 +16,6 @@ namespace RevRadio.Data.Entities
         [ForeignKey(nameof(ApplicationUserId))]
         public ApplicationUser ApplicationUser { get; set; }
 
-        public DateTime FollowedDate;
+        public DateTime FollowedDate { get; set; }
     }
 }

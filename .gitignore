@@ -88,5 +88,8 @@ docs/_build/
 
 obj
 dbsettings.json
+oauthsettings.json
+src/RevRadio/wwwroot/css
+src/RevRadio/wwwroot/js
 .vs/
 typings

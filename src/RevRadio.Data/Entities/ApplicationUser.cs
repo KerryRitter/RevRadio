@@ -5,8 +5,8 @@ namespace RevRadio.Data.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public List<ArtistProfileApplicationUserEntity> ArtistProfiles { get; set; }
+        internal List<ArtistProfileApplicationUserEntity> ArtistProfiles { get; set; }
 
-        public List<FollowingEntity> Following { get; set; }
+        internal List<FollowingEntity> Following { get; set; }
     }
 }
