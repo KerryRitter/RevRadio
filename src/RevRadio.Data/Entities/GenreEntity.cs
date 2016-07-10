@@ -17,5 +17,7 @@ namespace RevRadio.Data.Entities
         public string Name { get; set; }
 
         public List<TrackGenreEntity> Tracks { get; set; }
+
+        public List<ArtistProfileGenreEntity> Artists { get; set; }
     }
 }

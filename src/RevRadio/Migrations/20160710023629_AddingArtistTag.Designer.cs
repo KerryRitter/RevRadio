@@ -7,7 +7,7 @@ using RevRadio.Data;
 
 namespace RevRadio.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DbEntityContext))]
     [Migration("20160710023629_AddingArtistTag")]
     partial class AddingArtistTag
     {

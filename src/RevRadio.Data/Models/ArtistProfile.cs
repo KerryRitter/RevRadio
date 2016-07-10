@@ -15,6 +15,8 @@ namespace RevRadio.Data.Models
 
         public string ImageFileUrl { get; set; }
 
+        public List<Genre> Genres { get; set; }
+
         public ApplicationUser CreatedBy { get; set; }
 
         public List<ApplicationUser> Owners { get; set; }

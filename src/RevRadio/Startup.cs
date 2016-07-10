@@ -34,12 +34,12 @@ namespace RevRadio
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<DbEntityContext>(options =>
                 options.UseSqlServer(Configuration["Data:DefaultConnection"],
                     uss => uss.MigrationsAssembly("RevRadio")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<DbEntityContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();

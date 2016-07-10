@@ -16,7 +16,5 @@ namespace RevRadio.Data.Models
         public string ImageFileUrl { get; set; }
 
         public ArtistProfile Artist { get; set; }
-
-        public List<Genre> Genres { get; set; }
     }
 }

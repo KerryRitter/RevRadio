@@ -7,7 +7,7 @@ using RevRadio.Data;
 
 namespace RevRadio.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DbEntityContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -224,6 +224,21 @@ namespace RevRadio.Migrations
                     b.ToTable("ArtistProfile");
                 });
 
+            modelBuilder.Entity("RevRadio.Data.Entities.ArtistProfileGenreEntity", b =>
+                {
+                    b.Property<int>("ArtistProfileId");
+
+                    b.Property<int>("GenreId");
+
+                    b.HasKey("ArtistProfileId", "GenreId");
+
+                    b.HasIndex("ArtistProfileId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("ArtistProfile_Genre");
+                });
+
             modelBuilder.Entity("RevRadio.Data.Entities.ArtistProfileTagEntity", b =>
                 {
                     b.Property<int>("ArtistProfileId");
@@ -353,6 +368,21 @@ namespace RevRadio.Migrations
                     b.ToTable("Track_Genre");
                 });
 
+            modelBuilder.Entity("RevRadio.Data.Entities.TrackTagEntity", b =>
+                {
+                    b.Property<int>("TrackId");
+
+                    b.Property<int>("TagId");
+
+                    b.HasKey("TrackId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("Track_Tag");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -412,6 +442,19 @@ namespace RevRadio.Migrations
                     b.HasOne("RevRadio.Data.Entities.ApplicationUser", "LastModifiedBy")
                         .WithMany()
                         .HasForeignKey("LastModifiedById");
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.ArtistProfileGenreEntity", b =>
+                {
+                    b.HasOne("RevRadio.Data.Entities.ArtistProfileEntity", "Artist")
+                        .WithMany("Genres")
+                        .HasForeignKey("ArtistProfileId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RevRadio.Data.Entities.GenreEntity", "Genre")
+                        .WithMany("Artists")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("RevRadio.Data.Entities.ArtistProfileTagEntity", b =>
@@ -478,6 +521,19 @@ namespace RevRadio.Migrations
 
                     b.HasOne("RevRadio.Data.Entities.TrackEntity", "Track")
                         .WithMany("Genres")
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.TrackTagEntity", b =>
+                {
+                    b.HasOne("RevRadio.Data.Entities.TagEntity", "Tag")
+                        .WithMany()
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RevRadio.Data.Entities.TrackEntity", "Track")
+                        .WithMany()
                         .HasForeignKey("TrackId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
