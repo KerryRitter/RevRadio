@@ -32,6 +32,8 @@ namespace RevRadio.Data.Entities
 
         public List<ArtistProfileTrackEntity> Tracks { get; set; }
 
+        public List<ArtistProfileTagEntity> Tags { get; set; }
+
         public string CreatedById { get; set; }
 
         [ForeignKey(nameof(CreatedById))]

@@ -7,6 +7,8 @@ namespace RevRadio.Data
     {
         public static void AddRevRadioDataServices(this IServiceCollection services)
         {
+            services.AddSingleton<IDbDapperContextFactory, DbDapperContextFactory>();
+
             services.AddTransient<IUserService, UserService>();
         }
     }

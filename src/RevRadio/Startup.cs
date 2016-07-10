@@ -44,6 +44,8 @@ namespace RevRadio
 
             services.AddMvc();
 
+            services.AddSingleton<IConfiguration>(Configuration);
+
             services.AddRevRadioServices();
             services.AddRevRadioDataServices();
         }
