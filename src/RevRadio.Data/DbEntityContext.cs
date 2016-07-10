@@ -10,14 +10,8 @@ namespace RevRadio.Data
         internal DbSet<GenreEntity> Genres { get; set; }
         internal DbSet<TrackEntity> Tracks { get; set; }
         internal DbSet<TagEntity> Tags { get; set; }
-
+        internal DbSet<ExternalArtistEntity> ExternalArtists { get; set; }
         internal DbSet<FollowingEntity> Followings { get; set; }
-        internal DbSet<ArtistProfileApplicationUserEntity> ArtistProfileApplicationUsers { get; set; }
-        internal DbSet<ArtistProfileTagEntity> ArtistProfileTags { get; set; }
-        internal DbSet<ArtistProfileTrackEntity> ArtistProfileTracks { get; set; }
-        internal DbSet<ArtistProfileGenreEntity> ArtistProfileGenres { get; set; }
-        internal DbSet<TrackGenreEntity> TrackGenres { get; set; }
-        internal DbSet<TrackTagEntity> TrackTags { get; set; }
 
         public DbEntityContext(DbContextOptions<DbEntityContext> options)
             : base(options)
@@ -31,6 +25,17 @@ namespace RevRadio.Data
             builder.Entity<ArtistProfileTrackEntity>().HasKey(e => new { e.ArtistProfileId, e.TrackId });
             builder.Entity<ArtistProfileGenreEntity>().HasKey(e => new { e.ArtistProfileId, e.GenreId });
             builder.Entity<ArtistProfileTagEntity>().HasKey(e => new { e.ArtistProfileId, e.TagId });
+
+            builder.Entity<ExternalArtistGenreEntity>().HasKey(e => new { e.ExternalArtistId, e.GenreId });
+            builder.Entity<ExternalArtistRelatedArtistEntity>().HasKey(e => new { e.ExternalArtist1Id, e.ExternalArtist2Id });
+            builder.Entity<ExternalArtistRelatedArtistEntity>()
+                .HasOne(c => c.Artist1)
+                .WithMany(c => c.RelatedArtists)
+                .HasForeignKey(c => c.ExternalArtist1Id);
+            builder.Entity<ExternalArtistRelatedArtistEntity>()
+                .HasOne(c => c.Artist2)
+                .WithMany(c => c.IsRelatedToArtists)
+                .HasForeignKey(c => c.ExternalArtist2Id);
 
             builder.Entity<TrackGenreEntity>().HasKey(e => new { e.TrackId, e.GenreId });
             builder.Entity<TrackTagEntity>().HasKey(e => new { e.TrackId, e.TagId });

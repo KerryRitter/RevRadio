@@ -29,7 +29,7 @@ namespace RevRadio.Migrations
                         column: x => x.GenreId,
                         principalTable: "Genre",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

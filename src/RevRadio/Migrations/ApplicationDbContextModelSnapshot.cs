@@ -269,6 +269,54 @@ namespace RevRadio.Migrations
                     b.ToTable("ArtistProfile_Track");
                 });
 
+            modelBuilder.Entity("RevRadio.Data.Entities.ExternalArtistEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ExternalId");
+
+                    b.Property<int>("ExternalSourceId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("Popularity");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExternalArtist");
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.ExternalArtistGenreEntity", b =>
+                {
+                    b.Property<int>("ExternalArtistId");
+
+                    b.Property<int>("GenreId");
+
+                    b.HasKey("ExternalArtistId", "GenreId");
+
+                    b.HasIndex("ExternalArtistId");
+
+                    b.HasIndex("GenreId");
+
+                    b.ToTable("ExternalArtist_Genre");
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.ExternalArtistRelatedArtistEntity", b =>
+                {
+                    b.Property<int>("ExternalArtist1Id");
+
+                    b.Property<int>("ExternalArtist2Id");
+
+                    b.HasKey("ExternalArtist1Id", "ExternalArtist2Id");
+
+                    b.HasIndex("ExternalArtist1Id");
+
+                    b.HasIndex("ExternalArtist2Id");
+
+                    b.ToTable("ExternalArtistRelatedArtist");
+                });
+
             modelBuilder.Entity("RevRadio.Data.Entities.FollowingEntity", b =>
                 {
                     b.Property<int>("ArtistProfileId");
@@ -307,10 +355,11 @@ namespace RevRadio.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<int>("ExternalArtistId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExternalArtistId");
 
                     b.ToTable("Tag");
                 });
@@ -483,6 +532,32 @@ namespace RevRadio.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("RevRadio.Data.Entities.ExternalArtistGenreEntity", b =>
+                {
+                    b.HasOne("RevRadio.Data.Entities.ExternalArtistEntity", "Artist")
+                        .WithMany("Genres")
+                        .HasForeignKey("ExternalArtistId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RevRadio.Data.Entities.GenreEntity", "Genre")
+                        .WithMany("ExternalArtists")
+                        .HasForeignKey("GenreId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.ExternalArtistRelatedArtistEntity", b =>
+                {
+                    b.HasOne("RevRadio.Data.Entities.ExternalArtistEntity", "Artist1")
+                        .WithMany("RelatedArtists")
+                        .HasForeignKey("ExternalArtist1Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RevRadio.Data.Entities.ExternalArtistEntity", "Artist2")
+                        .WithMany("IsRelatedToArtists")
+                        .HasForeignKey("ExternalArtist2Id")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("RevRadio.Data.Entities.FollowingEntity", b =>
                 {
                     b.HasOne("RevRadio.Data.Entities.ApplicationUser", "ApplicationUser")
@@ -493,6 +568,14 @@ namespace RevRadio.Migrations
                     b.HasOne("RevRadio.Data.Entities.ArtistProfileEntity", "ArtistProfile")
                         .WithMany("Followers")
                         .HasForeignKey("ArtistProfileId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RevRadio.Data.Entities.TagEntity", b =>
+                {
+                    b.HasOne("RevRadio.Data.Entities.ExternalArtistEntity", "ExternalArtist")
+                        .WithMany()
+                        .HasForeignKey("ExternalArtistId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

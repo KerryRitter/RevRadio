@@ -10,8 +10,10 @@ namespace RevRadio.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public int ExternalArtistId { get; set; }
+
+        [ForeignKey(nameof(ExternalArtistId))]
+        public ExternalArtistEntity ExternalArtist { get; set; }
 
         public List<ArtistProfileTagEntity> ArtistProfiles { get; set; }
     }
